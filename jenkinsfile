@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     def sum = env.SUM.toInteger()
-                    def result = sum / 3
+                    def result = sum / 2
                     echo "The division result is: ${result}"
                     env.R = result.toString()
                 }
