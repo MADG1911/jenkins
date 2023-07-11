@@ -1,28 +1,35 @@
 pipeline {
     agent any
+    
     stages {
-        stage('Build') {
+        stage('Addition') {
             steps {
-                echo "Building.."
-                sh '''
-                echo "doing build stuff.."
-                '''
+                script {
+                    def number1 = 5
+                    def number2 = 3
+                    def sum = number1 + number2
+                    echo "The sum is: ${sum}"
+                    env.SUM = sum.toString()
+                }
             }
         }
-        stage('Test') {
+        
+        stage('Division') {
             steps {
-                echo "Testing.."
-                sh '''
-                echo "doing test stuff.."
-                '''
+                script {
+                    def sum = env.SUM.toInteger()
+                    def result = sum / 3
+                    echo "The division result is: ${result}"
+                    env.R = result.toString()
+                }
             }
         }
-        stage('Deliver') {
+        
+        stage('Final Result') {
             steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                script {
+                    echo "The final result is: ${env.R}"
+                }
             }
         }
     }
